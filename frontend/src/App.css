@@ -27,3 +27,13 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.btn-add{
+    background-color: #61dafb;
+    color: black;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}

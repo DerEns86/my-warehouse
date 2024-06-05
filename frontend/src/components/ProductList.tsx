@@ -1,11 +1,20 @@
 import {Product} from "../model/Product.ts";
+import {useNavigate} from "react-router-dom";
 
 type ProductListProps = {
     products?: Product[]
 }
 
 export default function ProductList(props: ProductListProps) {
+ const navigate = useNavigate();
+
+    function onOpenAddProductForm() {
+        console.log('Opening add product form')
+        navigate('/add-product')
+    }
+
     return (
+        <>
         <div>
             <h1>Product List</h1>
 
@@ -17,5 +26,7 @@ export default function ProductList(props: ProductListProps) {
                 ))}
             </ul>
         </div>
+        <button className="btn-add" onClick={onOpenAddProductForm}>Add item</button>
+        </>
     )
 }
