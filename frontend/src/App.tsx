@@ -23,7 +23,7 @@ export default function App() {
     });
   }
 
-  function onAddProductDTO(newProduct : ProductDTO) {
+  function addProductDTO(newProduct : ProductDTO) {
       addProduct(newProduct).then(response => {
           setProducts([...products, response.data]);
       }).catch(error => {
@@ -44,7 +44,7 @@ export default function App() {
             <Header/>
             <Routes>
                 <Route path="/" element={<ProductList products={products}/>}/>
-                <Route path="/add-product" element={<AddProductForm  onAddProductDTO={onAddProductDTO}/> }/>
+                <Route path="/add-product" element={<AddProductForm  onAddProductDTO={addProductDTO}/> }/>
             </Routes>
             <Footer />
 

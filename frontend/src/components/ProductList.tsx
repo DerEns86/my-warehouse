@@ -13,10 +13,6 @@ export default function ProductList(props: ProductListProps) {
         navigate('/add-product')
     }
 
-    const onOpenProductDetails = (id:string):string=> {
-        console.log("click" + id);
-        return id;
-    }
 
 
 
@@ -27,7 +23,7 @@ export default function ProductList(props: ProductListProps) {
 
 
                 {props.products?.map(product => (
-                    <div key={product.id} className="list-item" onClick={onOpenProductDetails}>
+                    <div key={product.id} className="list-item" >
                        <p> {product.title} - {product.amount} </p>
 
                     </div>
