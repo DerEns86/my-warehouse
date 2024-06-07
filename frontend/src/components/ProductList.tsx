@@ -1,5 +1,5 @@
 import {Product} from "../model/Product.ts";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type ProductListProps = {
     products?: Product[]
@@ -8,6 +8,7 @@ type ProductListProps = {
 
 export default function ProductList(props: ProductListProps) {
     const navigate = useNavigate();
+
 
     function onOpenAddProductForm() {
         console.log('Opening add product form')
@@ -26,7 +27,7 @@ export default function ProductList(props: ProductListProps) {
                         <p> {product.title} - {product.amount} </p>
                         <div>
                             <button className="btn-delete" onClick={() => props.deleteProduct(product.id)}>X</button>
-                            <button className="btn-edit">Edit</button>
+                            <button className="btn-edit" onClick={()=> navigate(`/edit/${ product.id }`)}>Edit</button>
                         </div>
                     </div>
                 ))}
