@@ -13,19 +13,27 @@ export default function ProductList(props: ProductListProps) {
         navigate('/add-product')
     }
 
+    const onOpenProductDetails = (id:string):string=> {
+        console.log("click" + id);
+        return id;
+    }
+
+
+
     return (
         <>
-        <div>
             <h1>Product List</h1>
+            <section className="list-content">
 
-            <ul>
+
                 {props.products?.map(product => (
-                    <li key={product.id}>
-                        {product.title} - {product.amount}
-                    </li>
+                    <div key={product.id} className="list-item" onClick={onOpenProductDetails}>
+                       <p> {product.title} - {product.amount} </p>
+
+                    </div>
                 ))}
-            </ul>
-        </div>
+
+        </section>
         <button className="btn-add" onClick={onOpenAddProductForm}>Add item</button>
         </>
     )

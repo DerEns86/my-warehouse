@@ -21,4 +21,9 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }
+
+    @GetMapping("api/products/{id}")
+    public Product getProductById(String id){
+        return productService.getProductById(id);
+    }
 }

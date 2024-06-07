@@ -28,7 +28,7 @@ footer {
     width: 100%;
 }
 
-.btn-add{
+.btn-add {
     background-color: #61dafb;
     color: black;
     padding: 10px;
@@ -36,4 +36,15 @@ footer {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.list-content {
+    text-align: center;
+}
+
+.list-item {
+    width: 30%;
+    border: 1px solid #282c34;
+    margin-bottom: 6px;
+    border-radius: 10px;
 }

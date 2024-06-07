@@ -1,20 +1,19 @@
 import React, {useState} from "react";
-import {ProductDTO} from "../model/Product.ts";
+import {Product, ProductDTO} from "../model/Product.ts";
+
+import { addProduct } from "../API/ProductServiceApi.ts";
 
 
-type AddProductFormProps = {
-    addProduct: (product: ProductDTO) => void
 
-}
 
-export default function AddProductForm(props: AddProductFormProps){
+export default function AddProductForm(){
 
     const [product, setProduct] = useState<ProductDTO>({title: '', amount: 0});
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setProduct({title: '', amount: 0})
-        props.addProduct(product);
+        await addProduct(product as Product);
         console.log(product.amount, product.title);
     }
     return (
