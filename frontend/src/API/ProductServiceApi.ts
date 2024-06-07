@@ -1,11 +1,11 @@
 import axios from "axios";
-import {Product} from "../model/Product.ts";
+import {Product, ProductDTO} from "../model/Product.ts";
 
-export async function getAllProducts() {
-    return await axios.get("/api/products")
+export  function getAllProducts() {
+    return  axios.get("/api/products")
 }
 
-export async function addProduct(product : Product) {
+export async function addProduct(product : ProductDTO) {
     return await axios.post("/api/products", product)
 }
 

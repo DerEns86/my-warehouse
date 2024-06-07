@@ -3,39 +3,40 @@ import {Route, Routes} from "react-router-dom";
 import ProductList from "./components/ProductList.tsx";
 import {useEffect, useState} from "react";
 import {Product, ProductDTO} from "./model/Product.ts";
-import axios from "axios";
+
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import AddProductForm from "./components/AddProductForm.tsx";
-import { getAllProducts } from "./API/ProductServiceApi.ts";
+import {addProduct, getAllProducts} from "./API/ProductServiceApi.ts";
 
 
 export default function App() {
 
-    const [products, setProducts] = useState<Product[]>([])
-    // const [newProduct, setNewProduct] = useState<ProductDTO>({title: '', amount: 0})
+    const [products, setProducts] = useState<Product[]>([]);
 
 
-  const fetchAllProducts = async () => {
-    const { data } = await getAllProducts();
-    setProducts(data);
+  const fetchAllProducts =  () => {
+    getAllProducts().then(response => {
+        setProducts(response.data);
+    }).catch(error => {
+        console.error('Error fetching data:', error)
+    });
+  }
+
+  function onAddProductDTO(newProduct : ProductDTO) {
+      addProduct(newProduct).then(response => {
+          setProducts([...products, response.data]);
+      }).catch(error => {
+          console.error('Error adding data:', error)
+      });
   }
 
 
 
-    // function addProduct(newProduct: ProductDTO){
-    //     axios.post('/api/products', newProduct)
-    //         .then(response => {
-    //             console.log(`Product added successfully:`, response.data)
-    //             setNewProduct({title: '', amount: 0})
-    //         }).catch(error => {
-    //         console.error('Error adding product:', error)
-    //     })
-    // }
 
     useEffect(() => {
         fetchAllProducts();
-    }, [setProducts])
+    }, [])
 
 
     return (
@@ -43,7 +44,7 @@ export default function App() {
             <Header/>
             <Routes>
                 <Route path="/" element={<ProductList products={products}/>}/>
-                <Route path="/add-product" element={<AddProductForm /> }/>
+                <Route path="/add-product" element={<AddProductForm  onAddProductDTO={onAddProductDTO}/> }/>
             </Routes>
             <Footer />
 
