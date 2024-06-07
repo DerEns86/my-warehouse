@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 type ProductListProps = {
     products?: Product[]
+    deleteProduct: (id: string) => void
 }
 
 export default function ProductList(props: ProductListProps) {
@@ -24,6 +25,8 @@ export default function ProductList(props: ProductListProps) {
 
                 {props.products?.map(product => (
                     <div key={product.id} className="list-item" >
+                        <button className="btn-delete" onClick={() => props.deleteProduct(product.id)}>X</button>
+
                        <p> {product.title} - {product.amount} </p>
 
                     </div>

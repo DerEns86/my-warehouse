@@ -24,4 +24,8 @@ public class ProductService {
         return productRepo.findById(id)
                 .orElseThrow();
     }
+
+    public void deleteProduct(String id) {
+        productRepo.deleteById(id);
+    }
 }

@@ -23,7 +23,12 @@ public class ProductController {
     }
 
     @GetMapping("api/products/{id}")
-    public Product getProductById(String id){
+    public Product getProductById(@PathVariable String id){
         return productService.getProductById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable String id){
+        productService.deleteProduct(id);
     }
 }

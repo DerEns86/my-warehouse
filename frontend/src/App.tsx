@@ -7,7 +7,7 @@ import {Product, ProductDTO} from "./model/Product.ts";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import AddProductForm from "./components/AddProductForm.tsx";
-import {addProduct, getAllProducts} from "./API/ProductServiceApi.ts";
+import {addProduct, getAllProducts, deleteProduct } from "./API/ProductServiceApi.ts";
 
 
 export default function App() {
@@ -31,6 +31,12 @@ export default function App() {
       });
   }
 
+  function deleteProductById(id : string) {
+      setProducts(products.filter(product => product.id !== id));
+      deleteProduct(id).catch(error => {
+          console.error('Error deleting data:', error)
+      });
+    }
 
 
 
@@ -43,7 +49,7 @@ export default function App() {
         <>
             <Header/>
             <Routes>
-                <Route path="/" element={<ProductList products={products}/>}/>
+                <Route path="/" element={<ProductList products={products} deleteProduct={deleteProductById}/>}/>
                 <Route path="/add-product" element={<AddProductForm  onAddProductDTO={addProductDTO}/> }/>
             </Routes>
             <Footer />
