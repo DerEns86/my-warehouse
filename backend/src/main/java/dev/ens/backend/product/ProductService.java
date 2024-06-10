@@ -28,4 +28,9 @@ public class ProductService {
     public void deleteProduct(String id) {
         productRepo.deleteById(id);
     }
+
+    public Product updateProduct(String id, ProductDTO product){
+        Product productToUpdate = new Product(id, product.title(), product.amount());
+        return productRepo.save(productToUpdate);
+    }
 }
