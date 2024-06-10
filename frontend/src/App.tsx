@@ -8,6 +8,7 @@ import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import AddProductForm from "./components/AddProductForm.tsx";
 import {addProduct, getAllProducts, deleteProduct } from "./API/ProductServiceApi.ts";
+import EditProductForm from "./components/EditProductForm.tsx";
 
 
 export default function App() {
@@ -39,7 +40,6 @@ export default function App() {
     }
 
 
-
     useEffect(() => {
         fetchAllProducts();
     }, [])
@@ -51,6 +51,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<ProductList products={products} deleteProduct={deleteProductById}/>}/>
                 <Route path="/add-product" element={<AddProductForm  onAddProductDTO={addProductDTO}/> }/>
+                <Route path="/edit/:id" element={<EditProductForm />} />
             </Routes>
             <Footer />
 
