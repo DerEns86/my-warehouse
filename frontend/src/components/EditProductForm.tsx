@@ -47,7 +47,7 @@ export default function EditProductForm() {
 
     return (
         <>
-            <h1>Edit Product</h1>
+            <h1>Edit Product {product.title}</h1>
 
             <form onSubmit={saveProduct}>
                 <input value={product.title} name="title" onChange={onChange}/>
