@@ -3,7 +3,7 @@ name: "my-warehouse"
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-frontend:
