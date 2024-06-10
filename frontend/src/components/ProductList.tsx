@@ -19,7 +19,7 @@ export default function ProductList(props: ProductListProps) {
 
     return (
         <>
-            <h1>Product List</h1>
+            <h1>My Product List</h1>
             <section className="list-content">
 
 
