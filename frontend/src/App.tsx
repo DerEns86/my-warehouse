@@ -9,6 +9,7 @@ import Footer from "./components/Footer.tsx";
 import AddProductForm from "./components/AddProductForm.tsx";
 import {addProduct, getAllProducts, deleteProduct } from "./API/ProductServiceApi.ts";
 import EditProductForm from "./components/EditProductForm.tsx";
+import axios from "axios";
 
 
 export default function App() {
@@ -39,6 +40,18 @@ export default function App() {
       });
     }
 
+    const loadUser = () => {
+        axios.get("/api/auth/me")
+            .then(response => {
+                console.log(response.data)
+            })
+    }
+
+    function login() {
+        const host = window.location.host === "localhost:5173" ? "http://localhost:8080": window.location.origin
+        window.open(host + "/oauth2/authorization/github", "_self")
+    }
+
 
     useEffect(() => {
         fetchAllProducts();
@@ -50,10 +63,12 @@ export default function App() {
             <Header/>
             <Routes>
                 <Route path="/" element={<ProductList products={products} deleteProduct={deleteProductById}/>}/>
-                <Route path="/add-product" element={<AddProductForm  onAddProductDTO={addProductDTO}/> }/>
-                <Route path="/edit/:id" element={<EditProductForm />} />
+                <Route path="/add-product" element={<AddProductForm onAddProductDTO={addProductDTO}/>}/>
+                <Route path="/edit/:id" element={<EditProductForm/>}/>
             </Routes>
-            <Footer />
+            <button onClick={login}>Login</button>
+            <button onClick={loadUser}>Me</button>
+            <Footer/>
 
         </>
     )
